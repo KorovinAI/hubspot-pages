@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Too Much Business? Here's How AI Fixes That.</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='%23FF7A59' d='M267.4 3.6c-6.5-4.8-15.3-4.8-21.8 0L89.1 113.5c-4.5 3.3-7.1 8.5-7.1 14.1v256.8c0 5.6 2.6 10.8 7.1 14.1l156.5 109.9c6.5 4.8 15.3 4.8 21.8 0l156.5-109.9c4.5-3.3 7.1-8.5 7.1-14.1V127.6c0-5.6-2.6-10.8-7.1-14.1L267.4 3.6zM256 362.7c-58.9 0-106.7-47.8-106.7-106.7S197.1 149.3 256 149.3 362.7 197.1 362.7 256 314.9 362.7 256 362.7z'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="https://www.hubspot.com/hubfs/HubSpot_Logos/HubSpot-Inversed-Favicon.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Lexend Deca', system-ui, -apple-system, sans-serif;
+    background: #FEF4EA;
+    color: #192733;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    padding: 80px 24px 48px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .header .badge {
+    display: inline-block;
+    background: #FFCEC2;
+    color: #D44325;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .header h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #213343;
+    margin-bottom: 20px;
+  }
+  .header h1 span { color: #FF5C35; }
+  .header p {
+    font-size: 18px;
+    color: #516F90;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── Section wrapper ── */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #213343;
+    margin-bottom: 16px;
+    line-height: 1.3;
+  }
+  .section p.desc {
+    font-size: 16px;
+    color: #516F90;
+    margin-bottom: 32px;
+    max-width: 680px;
+    line-height: 1.6;
+  }
+
+  /* ── Current State ── */
+  .current-state { margin-top: 64px; }
+  .current-state .section-label { color: #D44325; }
+
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .pain-card {
+    background: #FFFFFF;
+    border: 1px solid #DBE4ED;
+    border-left: 4px solid #d9002b;
+    border-radius: 4px;
+    padding: 28px 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .pain-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(25, 39, 51, 0.08);
+  }
+  .pain-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+  .pain-card h3 { font-size: 16px; font-weight: 700; color: #d9002b; margin-bottom: 8px; }
+  .pain-card p { font-size: 14px; color: #516F90; line-height: 1.5; }
+
+  /* ── Arrow divider ── */
+  .arrow-divider {
+    text-align: center;
+    padding: 32px 0;
+    position: relative;
+  }
+  .arrow-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #FFCEC2;
+  }
+  .arrow-divider svg { position: relative; z-index: 1; }
+
+  /* ── Future State ── */
+  .future-state .section-label { color: #00823a; }
+  .future-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .future-card {
+    background: #FFFFFF;
+    border: 1px solid #DBE4ED;
+    border-left: 4px solid #00823a;
+    border-radius: 4px;
+    padding: 28px 24px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .future-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(25, 39, 51, 0.08); }
+  .future-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+  .future-card h3 { font-size: 15px; font-weight: 700; color: #00823a; margin-bottom: 6px; }
+  .future-card p { font-size: 13px; color: #516F90; }
+
+  /* ── Gap ── */
+  .gap-section { margin-top: 16px; }
+  .gap-section .section-label { color: #FF5C35; }
+  .gap-banner {
+    background: #FFFFFF;
+    border: 2px solid #FF5C35;
+    border-radius: 4px;
+    padding: 32px;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .gap-banner p { font-size: 18px; color: #2E475D; max-width: 700px; margin: 0 auto; line-height: 1.6; }
+  .gap-banner p strong { color: #FF5C35; }
+
+  /* ── Agent sections ── */
+  .agent-block { margin-top: 24px; margin-bottom: 64px; }
+  .agent-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .agent-badge {
+    font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 4px;
+  }
+  .agent-badge.ca { background: #EAF0F6; color: #2E475D; }
+  .agent-badge.pa { background: #EAF0F6; color: #2E475D; }
+  .agent-block h2 { margin-bottom: 8px; }
+  .agent-block .subtitle { font-size: 16px; color: #516F90; margin-bottom: 28px; }
+
+  /* ── Channels strip ── */
+  .channels { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+  .channel-tag {
+    background: #EAF0F6;
+    border: 1px solid #DBE4ED;
+    color: #2E475D;
+    font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 8px;
+  }
+
+  /* ── Flowchart ── */
+  .flowchart-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto 40px;
+    overflow-x: auto;
+  }
+  .flowchart-svg { display: block; margin: 0 auto; }
+
+  /* ── Stats ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+    margin-bottom: 16px;
+  }
+  .stat-card { border-radius: 4px; padding: 28px 24px; text-align: center; transition: transform 0.2s; }
+  .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(25, 39, 51, 0.08); }
+  .stat-card.ca-stat {
+    background: #FFFFFF;
+    border: 1px solid #DBE4ED;
+    border-top: 3px solid #FF5C35;
+  }
+  .stat-card.pa-stat {
+    background: #FFFFFF;
+    border: 1px solid #DBE4ED;
+    border-top: 3px solid #2E475D;
+  }
+  .stat-number { font-size: 36px; font-weight: 700; line-height: 1; margin-bottom: 8px; }
+  .stat-number.ca-num { color: #FF5C35; }
+  .stat-number.pa-num { color: #213343; }
+  .stat-label { font-size: 13px; color: #516F90; line-height: 1.4; }
+  .stat-source { font-size: 11px; color: #99AFC4; margin-top: 6px; }
+
+  /* ── CTA ── */
+  .cta-section {
+    text-align: center;
+    padding: 64px 24px 80px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .cta-section h2 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #213343;
+    margin-bottom: 16px;
+  }
+  .cta-section p { font-size: 16px; color: #516F90; margin-bottom: 32px; line-height: 1.6; }
+  .cta-button {
+    display: inline-block;
+    background: #ff4800;
+    color: #FFFFFF;
+    font-size: 16px; font-weight: 700;
+    padding: 16px 40px; border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .cta-button:hover { background: #c93700; transform: translateY(-1px); }
+
+  .footer {
+    text-align: center; padding: 24px; font-size: 12px; color: #99AFC4;
+    border-top: 1px solid #DBE4ED;
+  }
+
+  @media (max-width: 600px) {
+    .pain-grid, .future-grid, .stats-row { grid-template-columns: 1fr; }
+    .header { padding: 48px 16px 32px; }
+    .section { padding: 0 16px; }
+    .flowchart-svg { min-width: 700px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<div class="header">
+  <div class="badge">The Inbound Problem</div>
+  <h1>Your Sales Team Has <span>Too Much Business.</span><br>That's a Problem.</h1>
+  <p>When demand outpaces capacity, opportunities slip, response times blow out, and your best prospects get the same treatment as tyre-kickers. Here's how to fix it.</p>
+</div>
+
+<!-- ═══════════ CURRENT STATE ═══════════ -->
+<div class="section current-state">
+  <div class="section-label">Where You Are Now</div>
+  <h2>The Inbound Flood</h2>
+  <p class="desc">Strong demand is a good problem to have. But without a system to filter, route, and manage it, your sales team drowns in volume instead of closing deals.</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <span class="pain-icon">📥</span>
+      <h3>Unfiltered Inbound</h3>
+      <p>Every inquiry hits the same queue. High value opportunities sit alongside password resets and tyre-kickers. No prioritisation, no routing.</p>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">⏱️</span>
+      <h3>Time-Starved Reps</h3>
+      <p>Sales reps spend hours on low-value tasks: answering FAQs, chasing missing info, handling service requests that aren't even sales.</p>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">👻</span>
+      <h3>Prospects Go Cold</h3>
+      <p>Leads who don't respond to the first outreach never get a second touch. No one has time to follow up. Opportunities quietly die.</p>
+    </div>
+    <div class="pain-card">
+      <span class="pain-icon">🎯</span>
+      <h3>No Signal From Noise</h3>
+      <p>A government agency worth six figures gets the same response time as someone who accidentally submitted a form. Revenue left on the table.</p>
+    </div>
+  </div>
+</div>
+
+<div class="arrow-divider">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5C35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+</div>
+
+<!-- ═══════════ FUTURE STATE ═══════════ -->
+<div class="section future-state">
+  <div class="section-label">Where You Want To Be</div>
+  <h2>Every Inquiry Handled. Every Opportunity Worked.</h2>
+  <div class="future-grid">
+    <div class="future-card">
+      <span class="future-icon">⚡</span>
+      <h3>Instant Triage</h3>
+      <p>Every inbound is qualified and routed in seconds, not hours.</p>
+    </div>
+    <div class="future-card">
+      <span class="future-icon">🏷️</span>
+      <h3>Priority Flagging</h3>
+      <p>High value opportunities are marked and actioned immediately by a human.</p>
+    </div>
+    <div class="future-card">
+      <span class="future-icon">🤖</span>
+      <h3>Low-Value Automated</h3>
+      <p>Routine inquiries handled without a rep lifting a finger.</p>
+    </div>
+    <div class="future-card">
+      <span class="future-icon">🔄</span>
+      <h3>Auto Re-engage</h3>
+      <p>Cold prospects get personalised follow-ups automatically. No leads lost.</p>
+    </div>
+  </div>
+</div>
+
+<div class="arrow-divider">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF5C35" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+</div>
+
+<!-- ═══════════ GAP ═══════════ -->
+<div class="section gap-section">
+  <div class="section-label">The Gap</div>
+  <h2>What's Missing</h2>
+  <div class="gap-banner">
+    <p>You need <strong>two things</strong>: an AI that handles and routes inbound volume in real time, and an AI that automatically re-engages prospects who go quiet. HubSpot's <strong>Customer Agent</strong> and <strong>Prospecting Agent</strong> close both gaps.</p>
+  </div>
+</div>
+
+<!-- ═══════════ CUSTOMER AGENT FLOWCHART ═══════════ -->
+<div class="section agent-block">
+  <div class="agent-header">
+    <span class="agent-badge ca">Gap 1</span>
+  </div>
+  <h2 style="color:#FF5C35;">Customer Agent</h2>
+  <p class="subtitle">Qualifies, routes, and resolves inbound inquiries across every channel.</p>
+
+  <div class="channels">
+    <span class="channel-tag">Email</span>
+    <span class="channel-tag">Web Forms</span>
+    <span class="channel-tag">Live Chat</span>
+    <span class="channel-tag">WhatsApp</span>
+    <span class="channel-tag">Facebook Messenger</span>
+    <span class="channel-tag">Phone</span>
+  </div>
+
+  <div class="flowchart-container">
+    <svg class="flowchart-svg" width="852" height="620" viewBox="0 0 852 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow-ca" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6" fill="#FF5C35"/>
+        </marker>
+        <marker id="arrow-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6" fill="#00823a"/>
+        </marker>
+        <marker id="arrow-yellow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6" fill="#eeb117"/>
+        </marker>
+        <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6" fill="#d9002b"/>
+        </marker>
+      </defs>
+
+      <!-- ── Inquiry arrives node ── -->
+      <rect x="301" y="10" width="250" height="56" rx="4" fill="#FF5C35" fill-opacity="0.1" stroke="#FF5C35" stroke-width="1.5"/>
+      <text x="426" y="44" text-anchor="middle" fill="#FF5C35" font-family="Lexend Deca,sans-serif" font-size="15" font-weight="700">📥  Inquiry Arrives</text>
+
+      <line x1="426" y1="66" x2="426" y2="110" stroke="#FF5C35" stroke-width="1.5" marker-end="url(#arrow-ca)"/>
+
+      <!-- ── AI Classifies diamond ── -->
+      <polygon points="426,110 536,165 426,220 316,165" fill="#EAF0F6" stroke="#2E475D" stroke-width="1.5"/>
+      <text x="426" y="160" text-anchor="middle" fill="#213343" font-family="Lexend Deca,sans-serif" font-size="13" font-weight="700">🤖 AI Classifies</text>
+      <text x="426" y="178" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="11">What type of inquiry?</text>
+
+      <!-- ═══ LEFT BRANCH: High-Value Sales ═══ -->
+      <line x1="316" y1="165" x2="140" y2="165" stroke="#00823a" stroke-width="1.5"/>
+      <line x1="140" y1="165" x2="140" y2="280" stroke="#00823a" stroke-width="1.5" marker-end="url(#arrow-green)"/>
+      <rect x="155" y="148" width="130" height="20" rx="4" fill="#FEF4EA"/>
+      <text x="220" y="163" text-anchor="middle" fill="#00823a" font-family="Lexend Deca,sans-serif" font-size="11" font-weight="600">HIGH-VALUE SALES</text>
+
+      <rect x="30" y="280" width="220" height="120" rx="4" fill="#FFFFFF" stroke="#00823a" stroke-width="1.2"/>
+      <text x="140" y="310" text-anchor="middle" fill="#00823a" font-family="Lexend Deca,sans-serif" font-size="14" font-weight="700">🚀 Priority Route</text>
+      <text x="140" y="335" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="12">Flagged high-value.</text>
+      <text x="140" y="353" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="12">Routed to sales rep</text>
+      <text x="140" y="371" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="12">with full context.</text>
+      <text x="140" y="389" text-anchor="middle" fill="#00823a" font-family="Lexend Deca,sans-serif" font-size="11" font-weight="600">HUMAN ACTS NOW</text>
+
+      <!-- ═══ CENTER BRANCH: Low-Value / Incomplete ═══ -->
+      <line x1="426" y1="220" x2="426" y2="280" stroke="#eeb117" stroke-width="1.5" marker-end="url(#arrow-yellow)"/>
+      <rect x="355" y="238" width="142" height="20" rx="4" fill="#FEF4EA"/>
+      <text x="426" y="253" text-anchor="middle" fill="#eeb117" font-family="Lexend Deca,sans-serif" font-size="11" font-weight="600">LOW-VALUE SALES</text>
+
+      <rect x="316" y="280" width="220" height="120" rx="4" fill="#FFFFFF" stroke="#eeb117" stroke-width="1.2"/>
+      <text x="426" y="310" text-anchor="middle" fill="#eeb117" font-family="Lexend Deca,sans-serif" font-size="14" font-weight="700">🔄 Qualify + Collect</text>
+      <text x="426" y="335" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="12">AI gathers missing info,</text>
+      <text x="426" y="353" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="12">qualifies the opportunity,</text>
+      <text x="426" y="371" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="12">queues or manages directly.</text>
+      <text x="426" y="389" text-anchor="middle" fill="#eeb117" font-family="Lexend Deca,sans-serif" font-size="11" font-weight="600">HUMAN WHEN READY</text>
+
+      <!-- ═══ RIGHT BRANCH: Service / Support ═══ -->
+      <line x1="536" y1="165" x2="712" y2="165" stroke="#d9002b" stroke-width="1.5"/>
+      <line x1="712" y1="165" x2="712" y2="280" stroke="#d9002b" stroke-width="1.5" marker-end="url(#arrow-red)"/>
+      <rect x="565" y="148" width="120" height="20" rx="4" fill="#FEF4EA"/>
+      <text x="625" y="163" text-anchor="middle" fill="#d9002b" font-family="Lexend Deca,sans-serif" font-size="11" font-weight="600">SERVICE REQUEST</text>
+
+      <rect x="602" y="280" width="220" height="120" rx="4" fill="#FFFFFF" stroke="#d9002b" stroke-width="1.2"/>
+      <text x="712" y="310" text-anchor="middle" fill="#d9002b" font-family="Lexend Deca,sans-serif" font-size="14" font-weight="700">💬 Resolve or Route</text>
+      <text x="712" y="335" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="12">Known questions resolved</text>
+      <text x="712" y="353" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="12">instantly from knowledge base.</text>
+      <text x="712" y="371" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="12">Complex issues escalated</text>
+      <text x="712" y="389" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="12">to service human.</text>
+
+      <!-- ═══ Converge to Audit Trail ═══ -->
+      <line x1="140" y1="400" x2="140" y2="460" stroke="#B6C7D6" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="426" y1="400" x2="426" y2="460" stroke="#B6C7D6" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="712" y1="400" x2="712" y2="460" stroke="#B6C7D6" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="140" y1="460" x2="712" y2="460" stroke="#B6C7D6" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="426" y1="460" x2="426" y2="500" stroke="#2E475D" stroke-width="1.5" marker-end="url(#arrow-ca)"/>
+
+      <rect x="266" y="500" width="320" height="56" rx="4" fill="#EAF0F6" stroke="#DBE4ED" stroke-width="1.2" stroke-dasharray="6,3"/>
+      <text x="426" y="525" text-anchor="middle" fill="#2E475D" font-family="Lexend Deca,sans-serif" font-size="13" font-weight="600">🛡️  Every decision logged. Full audit trail.</text>
+      <text x="426" y="545" text-anchor="middle" fill="#7691AD" font-family="Lexend Deca,sans-serif" font-size="11">AI knows its limits. Escalates cleanly when it can't handle it.</text>
+
+      <text x="426" y="590" text-anchor="middle" fill="#99AFC4" font-family="Lexend Deca,sans-serif" font-size="11" font-style="italic">Customer Agent handles inbound volume so your sales team focuses on closing.</text>
+    </svg>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card ca-stat">
+      <div class="stat-number ca-num">75%</div>
+      <div class="stat-label">increase in support volume managed</div>
+      <div class="stat-source">Youth on Course</div>
+    </div>
+    <div class="stat-card ca-stat">
+      <div class="stat-number ca-num">40–50%</div>
+      <div class="stat-label">projected decrease in response times</div>
+      <div class="stat-source">Hostelworld</div>
+    </div>
+    <div class="stat-card ca-stat">
+      <div class="stat-number ca-num">60%</div>
+      <div class="stat-label">of chat queries handled without a human</div>
+      <div class="stat-source">HubSpot customer data</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ ARROW ═══════════ -->
+<div class="arrow-divider">
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2E475D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+</div>
+
+<!-- ═══════════ PROSPECTING AGENT FLOWCHART ═══════════ -->
+<div class="section agent-block">
+  <div class="agent-header">
+    <span class="agent-badge pa">Gap 2</span>
+  </div>
+  <h2 style="color:#213343;">Prospecting Agent</h2>
+  <p class="subtitle">Re-engages dormant prospects with personalised outreach, automatically.</p>
+
+  <div class="flowchart-container">
+    <svg class="flowchart-svg" width="852" height="620" viewBox="0 0 852 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow-pa" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6" fill="#2E475D"/>
+        </marker>
+        <marker id="arrow-pa-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6" fill="#00823a"/>
+        </marker>
+        <marker id="arrow-pa-yellow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L8,3 L0,6" fill="#eeb117"/>
+        </marker>
+      </defs>
+
+      <!-- ── Trigger node ── -->
+      <rect x="246" y="10" width="360" height="56" rx="4" fill="#2E475D" fill-opacity="0.08" stroke="#2E475D" stroke-width="1.5"/>
+      <text x="426" y="44" text-anchor="middle" fill="#213343" font-family="Lexend Deca,sans-serif" font-size="15" font-weight="700">👻  Prospect Goes Quiet</text>
+
+      <line x1="426" y1="66" x2="426" y2="110" stroke="#2E475D" stroke-width="1.5" marker-end="url(#arrow-pa)"/>
+
+      <!-- ── CRM Scan node ── -->
+      <rect x="226" y="110" width="400" height="80" rx="4" fill="#FFFFFF" stroke="#2E475D" stroke-width="1.2"/>
+      <text x="426" y="140" text-anchor="middle" fill="#213343" font-family="Lexend Deca,sans-serif" font-size="14" font-weight="700">🔍  Scans Your CRM</text>
+      <text x="426" y="160" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="11">Identifies dormant contacts.</text>
+      <text x="426" y="177" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="11">Pulls history, deal stage, and last activity.</text>
+
+      <line x1="426" y1="190" x2="426" y2="230" stroke="#2E475D" stroke-width="1.5" marker-end="url(#arrow-pa)"/>
+
+      <!-- ── Research node ── -->
+      <rect x="226" y="230" width="400" height="80" rx="4" fill="#FFFFFF" stroke="#2E475D" stroke-width="1.2"/>
+      <text x="426" y="260" text-anchor="middle" fill="#213343" font-family="Lexend Deca,sans-serif" font-size="14" font-weight="700">🌐  Researches the Prospect</text>
+      <text x="426" y="280" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="11">Company website, role, industry context.</text>
+      <text x="426" y="297" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="11">Builds a full picture before writing a word.</text>
+
+      <line x1="426" y1="310" x2="426" y2="350" stroke="#2E475D" stroke-width="1.5" marker-end="url(#arrow-pa)"/>
+
+      <!-- ── Compose node ── -->
+      <rect x="226" y="350" width="400" height="80" rx="4" fill="#FFFFFF" stroke="#2E475D" stroke-width="1.2"/>
+      <text x="426" y="380" text-anchor="middle" fill="#213343" font-family="Lexend Deca,sans-serif" font-size="14" font-weight="700">✍️  Writes Personalised Email</text>
+      <text x="426" y="400" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="11">References their specific context.</text>
+      <text x="426" y="417" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="11">Reads like it came from a human who did their homework.</text>
+
+      <line x1="426" y1="430" x2="426" y2="470" stroke="#2E475D" stroke-width="1.5" marker-end="url(#arrow-pa)"/>
+
+      <!-- ── Decision diamond ── -->
+      <polygon points="426,470 516,510 426,550 336,510" fill="#EAF0F6" stroke="#2E475D" stroke-width="1.5"/>
+      <text x="426" y="507" text-anchor="middle" fill="#213343" font-family="Lexend Deca,sans-serif" font-size="12" font-weight="700">Your Rules</text>
+      <text x="426" y="523" text-anchor="middle" fill="#516F90" font-family="Lexend Deca,sans-serif" font-size="10">High-value or low?</text>
+
+      <!-- ═══ LEFT: Auto-send ═══ -->
+      <line x1="336" y1="510" x2="160" y2="510" stroke="#00823a" stroke-width="1.5"/>
+      <line x1="160" y1="510" x2="160" y2="560" stroke="#00823a" stroke-width="1.5" marker-end="url(#arrow-pa-green)"/>
+      <rect x="60" y="560" width="200" height="40" rx="4" fill="#FFFFFF" stroke="#00823a" stroke-width="1.2"/>
+      <text x="160" y="585" text-anchor="middle" fill="#00823a" font-family="Lexend Deca,sans-serif" font-size="13" font-weight="700">⚡ Auto-Send</text>
+      <text x="160" y="510" text-anchor="middle" fill="#00823a" font-family="Lexend Deca,sans-serif" font-size="10" font-weight="600" dy="-8">LOWER PRIORITY</text>
+
+      <!-- ═══ RIGHT: Draft for review ═══ -->
+      <line x1="516" y1="510" x2="692" y2="510" stroke="#eeb117" stroke-width="1.5"/>
+      <line x1="692" y1="510" x2="692" y2="560" stroke="#eeb117" stroke-width="1.5" marker-end="url(#arrow-pa-yellow)"/>
+      <rect x="592" y="560" width="200" height="40" rx="4" fill="#FFFFFF" stroke="#eeb117" stroke-width="1.2"/>
+      <text x="692" y="585" text-anchor="middle" fill="#eeb117" font-family="Lexend Deca,sans-serif" font-size="13" font-weight="700">👁️ Draft for Approval</text>
+      <text x="692" y="510" text-anchor="middle" fill="#eeb117" font-family="Lexend Deca,sans-serif" font-size="10" font-weight="600" dy="-8">HIGH VALUE</text>
+    </svg>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card pa-stat">
+      <div class="stat-number pa-num">30%</div>
+      <div class="stat-label">pipeline growth from re-engaged leads</div>
+      <div class="stat-source">HubSpot customer data</div>
+    </div>
+    <div class="stat-card pa-stat">
+      <div class="stat-number pa-num">12+ mo</div>
+      <div class="stat-label">dormant leads reactivated and booked</div>
+      <div class="stat-source">Ving case study</div>
+    </div>
+    <div class="stat-card pa-stat">
+      <div class="stat-number pa-num">Minutes</div>
+      <div class="stat-label">to do what previously took months of manual outreach</div>
+      <div class="stat-source">Ving case study</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ CTA ═══════════ -->
+<div class="cta-section">
+  <h2>See It In Action</h2>
+  <p>30 minutes. Your HubSpot portal. A live demo with an AI specialist who'll show you exactly what this looks like for your team, answer the technical questions, and pressure-test the limitations. No prep needed.</p>
+  <a href="https://www.hubspot.com/meetings/ilia-korovin/initial-meeting-with-ilia" class="cta-button">Book a Live Demo →</a>
+</div>
+
+<div class="footer">
+  HubSpot Breeze AI Agents &nbsp;|&nbsp; Customer Agent &nbsp;·&nbsp; Prospecting Agent
+</div>
+
+</body>
+</html>
